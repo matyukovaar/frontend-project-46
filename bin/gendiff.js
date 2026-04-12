@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander'
-import { parseFile } from '../src/parsers.js'
-import path from 'path'
+import { genDiff } from '../src/index.js'
 const program = new Command()
 
 program
@@ -13,10 +12,8 @@ program
   .option('-f, --format [type]', 'output format')
   .helpOption('-h, --help', 'display help for command')
   .action((filepath1, filepath2) => {
-      const fullPath1 = path.resolve(process.cwd(), filepath1)
-      const fullPath2 = path.resolve(process.cwd(), filepath2)
-      const data1 = parseFile(fullPath1)
-      const data2 = parseFile(fullPath2)
+    const result = genDiff(filepath1, filepath2)
+    console.log(result)
   })
 
 program.parse(process.argv)
