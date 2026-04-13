@@ -4,7 +4,10 @@
   "description": "[![Actions Status](https://github.com/matyukovaar/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/matyukovaar/frontend-project-46/actions)",
   "main": "bin/gendiff.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -28,6 +31,7 @@
     "@eslint/js": "^10.0.1",
     "@stylistic/eslint-plugin": "^5.10.0",
     "eslint": "^10.2.0",
-    "globals": "^17.4.0"
+    "globals": "^17.4.0",
+    "jest": "^30.3.0"
   }
 }
