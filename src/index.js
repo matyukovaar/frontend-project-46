@@ -1,7 +1,5 @@
 import { parseFile } from './parsers.js'
 import _ from 'lodash'
-import yaml from 'js-yaml'
-
 
 export function genDiff(filepath1, filepath2) {
   const data1 = parseFile(filepath1)
