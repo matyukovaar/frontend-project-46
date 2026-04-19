@@ -1,56 +1,36 @@
 // @ts-check
-import { expect, test } from '@jest/globals'
+import { expect, test, describe } from '@jest/globals'
 import path from 'path'
+import fs from 'fs'
 import { fileURLToPath } from 'url'
 import { dirname } from 'path'
-import { genDiff } from '../src/index.js'
+import genDiff from '../src/index.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
 const getFixturePath = filename => path.join(__dirname, '__fixtures__', filename)
 
-test('genDiff, JSON', () => {
-  const path1 = getFixturePath('file1.json')
-  const path2 = getFixturePath('file2.json')
-  const expectedResult = `{
-  - follow: false
-    host: hexlet.io
-  - proxy: 123.234.53.22
-  - timeout: 50
-  + timeout: 20
-  + verbose: true
-}`
-  const result = genDiff(path1, path2)
-  expect(result).toBe(expectedResult)
-})
+const readFile = filename => fs.readFileSync(getFixturePath(filename), 'utf-8')
 
-test('genDiff, .yaml', () => {
-  const path1 = getFixturePath('file1.yaml')
-  const path2 = getFixturePath('file2.yaml')
-  const expectedResult = `{
-  - follow: false
-    host: hexlet.io
-  - proxy: 123.234.53.22
-  - timeout: 50
-  + timeout: 20
-  + verbose: true
-}`
-  const result = genDiff(path1, path2)
-  expect(result).toBe(expectedResult)
-})
+describe('Recursive Gendiff', () => {
+  const expectedStylish = readFile('expected.txt').trim()
+  const extensions = ['json', 'yml']
+  test.each(extensions)('works with %s files', (ext) => {
+    const filePath1 = getFixturePath(`file1.${ext}`)
+    const filePath2 = getFixturePath(`file2.${ext}`)
+    expect(genDiff(filePath1, filePath2)).toEqual(expectedStylish)
+  })
 
-test('genDiff, .yml', () => {
-  const path1 = getFixturePath('file1.yml')
-  const path2 = getFixturePath('file2.yml')
-  const expectedResult = `{
-  - follow: false
-    host: hexlet.io
-  - proxy: 123.234.53.22
-  - timeout: 50
-  + timeout: 20
-  + verbose: true
-}`
-  const result = genDiff(path1, path2)
-  expect(result).toBe(expectedResult)
+  test('format test', () => {
+    const filePath1 = getFixturePath('file1.json')
+    const filePath2 = getFixturePath('file2.json')
+    expect(genDiff(filePath1, filePath2, 'stylish')).toEqual(expectedStylish)
+  })
+
+  test('test stylish as default format', () => {
+    const filePath1 = getFixturePath('file1.json')
+    const filePath2 = getFixturePath('file2.json')
+    expect(genDiff(filePath1, filePath2)).toEqual(expectedStylish)
+  })
 })

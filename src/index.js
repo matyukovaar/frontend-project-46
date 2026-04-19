@@ -1,23 +1,12 @@
 import { parseFile } from './parsers.js'
-import _ from 'lodash'
+import buildTree from './buildTree.js'
+import format from './formatters/index.js'
 
-export function genDiff(filepath1, filepath2) {
+const genDiff = (filepath1, filepath2, formatName = 'stylish') => {
   const data1 = parseFile(filepath1)
   const data2 = parseFile(filepath2)
-
-  const keys = _.sortBy(_.union(Object.keys(data1), Object.keys(data2)))
-  const lines = keys.map((key) => {
-    if (!Object.hasOwn(data2, key)) {
-      return `- ${key}: ${data1[key]}`
-    }
-    if (!Object.hasOwn(data1, key)) {
-      return `+ ${key}: ${data2[key]}`
-    }
-    if (data1[key] !== data2[key]) {
-      return `- ${key}: ${data1[key]}\n  + ${key}: ${data2[key]}`
-    }
-    return `  ${key}: ${data1[key]}`
-  })
-
-  return `{\n  ${lines.join('\n  ')}\n}`
+  const diffTree = buildTree(data1, data2)
+  return format(diffTree, formatName)
 }
+
+export default genDiff
