@@ -23,7 +23,7 @@ function stylish(tree, depth = 1) {
     switch (node.type) {
       case 'nested':
         return `${currentIndent}${node.key}: ${stylish(node.children, depth + 1)}`
-      case 'notEqual':
+      case 'updated':
         return [
           `${beforeOperatirIndent}- ${node.key}: ${stringify(node.oldValue, depth)}`,
           `${beforeOperatirIndent}+ ${node.key}: ${stringify(node.newValue, depth)}`,
@@ -32,7 +32,7 @@ function stylish(tree, depth = 1) {
         return `${currentIndent}${node.key}: ${stringify(node.value, depth)}`
       case 'added':
         return `${beforeOperatirIndent}+ ${node.key}: ${stringify(node.value, depth)}`
-      case 'deleted':
+      case 'removed':
         return `${beforeOperatirIndent}- ${node.key}: ${stringify(node.value, depth)}`
       default:
         throw new Error(`Unknown type: ${node.type}`)
