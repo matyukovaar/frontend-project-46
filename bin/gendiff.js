@@ -13,8 +13,7 @@ program
   .option('-f, --format [type]', 'output format', 'stylish')
   .helpOption('-h, --help', 'display help for command')
   .action((filepath1, filepath2, options) => {
-    const format = options.format === true ? 'stylish' : options.format
-    const result = genDiff(filepath1, filepath2, format)
+    const result = genDiff(filepath1, filepath2, options.format)
     console.log(result)
   })
 
