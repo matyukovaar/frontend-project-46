@@ -5,4 +5,9 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=matyukovaar_frontend-project-46&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=matyukovaar_frontend-project-46)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=matyukovaar_frontend-project-46&metric=coverage)](https://sonarcloud.io/summary/new_code?id=matyukovaar_frontend-project-46)
 
+
+[![asciicast](https://asciinema.org/a/F6ejWNBZRSJyMQpN.svg)](https://asciinema.org/a/F6ejWNBZRSJyMQpN)
+[![asciicast](https://asciinema.org/a/xaWpQVbUaPEWRTXa.svg)](https://asciinema.org/a/xaWpQVbUaPEWRTXa)
+[![asciicast](https://asciinema.org/a/10N8Tis7T2WJ8VTm.svg)](https://asciinema.org/a/10N8Tis7T2WJ8VTm)
 [![asciicast](https://asciinema.org/a/US0S99tBSnnk2cCN.svg)](https://asciinema.org/a/US0S99tBSnnk2cCN)
+
