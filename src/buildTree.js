@@ -21,7 +21,7 @@ function buildTree(data1, data2) {
     }
 
     if (data1[key] === data2[key]) {
-      return { key, type: 'equal', value: data1[key] }
+      return { key, type: 'unchanged', value: data1[key] }
     }
   })
 }

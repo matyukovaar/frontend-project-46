@@ -28,7 +28,7 @@ function stylish(tree, depth = 1) {
           `${beforeOperatirIndent}- ${node.key}: ${stringify(node.oldValue, depth)}`,
           `${beforeOperatirIndent}+ ${node.key}: ${stringify(node.newValue, depth)}`,
         ]
-      case 'equal':
+      case 'unchanged':
         return `${currentIndent}${node.key}: ${stringify(node.value, depth)}`
       case 'added':
         return `${beforeOperatirIndent}+ ${node.key}: ${stringify(node.value, depth)}`

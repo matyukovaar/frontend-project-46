@@ -16,6 +16,8 @@ const readFile = filename => fs.readFileSync(getFixturePath(filename), 'utf-8')
 describe('Gendiff', () => {
   const expectedStylish = readFile('expectedStylish.txt').trim()
   const expectedPlain = readFile('expectedPlain.txt').trim()
+  const expectedJson = readFile('expectedJson.txt').trim()
+
   const extensions = ['json', 'yml']
   test.each(extensions)('works with %s files', (ext) => {
     const filePath1 = getFixturePath(`file1.${ext}`)
@@ -33,6 +35,12 @@ describe('Gendiff', () => {
     const filePath1 = getFixturePath('file1.json')
     const filePath2 = getFixturePath('file2.json')
     expect(genDiff(filePath1, filePath2, 'plain')).toEqual(expectedPlain)
+  })
+
+  test('format test json', () => {
+    const filePath1 = getFixturePath('file1.json')
+    const filePath2 = getFixturePath('file2.json')
+    expect(genDiff(filePath1, filePath2, 'json')).toEqual(expectedJson)
   })
 
   test('test stylish as default format', () => {

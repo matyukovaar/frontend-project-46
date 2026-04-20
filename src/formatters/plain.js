@@ -10,7 +10,7 @@ const stringify = (value) => {
 
 const plain = (tree, ancestry = []) => {
   const result = tree
-    .filter(node => node.type !== 'equal')
+    .filter(node => node.type !== 'unchanged')
     .map((node) => {
       const propertyName = [...ancestry, node.key].join('.')
       switch (node.type) {
