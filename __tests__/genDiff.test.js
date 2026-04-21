@@ -4,7 +4,7 @@ import path from 'path'
 import fs from 'fs'
 import { fileURLToPath } from 'url'
 import { dirname } from 'path'
-import genDiff from '../src/index.js'
+import genDiff from '../src/gendiff.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -48,4 +48,5 @@ describe('Gendiff', () => {
     const filePath2 = getFixturePath('file2.json')
     expect(genDiff(filePath1, filePath2)).toEqual(expectedStylish)
   })
+
 })
