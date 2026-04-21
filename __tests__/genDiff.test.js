@@ -48,5 +48,4 @@ describe('Gendiff', () => {
     const filePath2 = getFixturePath('file2.json')
     expect(genDiff(filePath1, filePath2)).toEqual(expectedStylish)
   })
-
 })
