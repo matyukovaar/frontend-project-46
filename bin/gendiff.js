@@ -17,4 +17,6 @@ program
     console.log(result)
   })
 
-program.parse(process.argv)
+if (import.meta.url === `file://${process.argv[1]}`) {
+  program.parse(process.argv)
+}
